@@ -1,6 +1,6 @@
 "use client";
 
-import { useScroll, useTransform, motion, MotionValue } from "framer-motion";
+import { useTransform, motion, MotionValue } from "framer-motion";
 
 const Section = ({
     text,
@@ -56,25 +56,30 @@ const Section = ({
 export default function Overlay({ scrollYProgress }: { scrollYProgress: MotionValue<number> }) {
     return (
         <>
+            {/* SECTION 1 */}
             <Section
-                text="Rajesh Chityal."
-                subText="Senior Full Stack Developer"
+                text="Rohit Raj Uppala"
+                subText="Data Scientist"
                 align="center"
                 start={0.05}
                 end={0.2}
                 scrollYProgress={scrollYProgress}
             />
+
+            {/* SECTION 2 */}
             <Section
-                text="5+ Years Experience."
-                subText="Specializing in React, Node.js, and Scalable Microservices."
+                text="5+ Years Experience"
+                subText="Turning complex data into meaningful insights and scalable solutions across fintech and enterprise domains."
                 align="left"
                 start={0.3}
                 end={0.45}
                 scrollYProgress={scrollYProgress}
             />
+
+            {/* SECTION 3 */}
             <Section
-                text="Innovating with AI."
-                subText="Building AI Agents & Voice Assistance Systems."
+                text="Machine Learning & AI"
+                subText="Skilled in Python, SQL, PySpark, NLP, LLMs, and Retrieval-Augmented Generation (RAG), with experience deploying models on GCP and Azure."
                 align="right"
                 start={0.6}
                 end={0.75}
