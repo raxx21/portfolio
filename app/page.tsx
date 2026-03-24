@@ -9,7 +9,7 @@ export default function Home() {
       <Experience />
       <Projects />
       <footer className="py-12 text-center text-gray-500 text-sm">
-        © {new Date().getFullYear()} Rohit Raj Uppala.
+        © {new Date().getFullYear()} Rohit Raj Uppala
       </footer>
     </main>
   );
