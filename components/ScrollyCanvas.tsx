@@ -24,13 +24,18 @@ export default function ScrollyCanvas({ frameCount = 75 }: { frameCount?: number
                 const promise = new Promise<void>((resolve) => {
                     const img = new Image();
                     const frameId = i.toString().padStart(4, "0");
+
                     img.src = `/sequence/${frameId}.png`;
+
                     img.onload = () => {
                         loadedImages[i] = img;
                         resolve();
                     };
-                    // Handle error gracefully
-                    img.onerror = () => resolve();
+
+                    // ✅ fallback (important)
+                    img.onerror = () => {
+                        resolve();
+                    };
                 });
                 promises.push(promise);
             }
@@ -45,61 +50,65 @@ export default function ScrollyCanvas({ frameCount = 75 }: { frameCount?: number
 
     const renderFrame = (index: number) => {
         const canvas = canvasRef.current;
-        if (!canvas || !images[index]) return;
+        if (!canvas) return;
 
         const ctx = canvas.getContext("2d");
         if (!ctx) return;
 
         const img = images[index];
 
-        // Responsive Object-Fit Cover Logic
-        const canvasRatio = canvas.width / canvas.height;
-        const imgRatio = img.width / img.height;
-
-        let drawWidth, drawHeight, offsetX, offsetY;
-
-        if (imgRatio > canvasRatio) {
-            drawHeight = canvas.height;
-            drawWidth = img.width * (canvas.height / img.height);
-            offsetX = (canvas.width - drawWidth) / 2;
-            offsetY = 0;
-        } else {
-            drawWidth = canvas.width;
-            drawHeight = img.height * (canvas.width / img.width);
-            offsetX = 0;
-            offsetY = (canvas.height - drawHeight) / 2;
-        }
-
-        // Clear and Draw
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = "#121212";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+
+        // ✅ If image exists → draw it
+        if (img) {
+            const canvasRatio = canvas.width / canvas.height;
+            const imgRatio = img.width / img.height;
+
+            let drawWidth, drawHeight, offsetX, offsetY;
+
+            if (imgRatio > canvasRatio) {
+                drawHeight = canvas.height;
+                drawWidth = img.width * (canvas.height / img.height);
+                offsetX = (canvas.width - drawWidth) / 2;
+                offsetY = 0;
+            } else {
+                drawWidth = canvas.width;
+                drawHeight = img.height * (canvas.width / img.width);
+                offsetX = 0;
+                offsetY = (canvas.height - drawHeight) / 2;
+            }
+
+            ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+        }
     };
 
     useMotionValueEvent(scrollYProgress, "change", (latest) => {
-        if (!isLoaded || images.length === 0) return;
+        if (!isLoaded) return;
+
         const frameIndex = Math.min(
             frameCount - 1,
             Math.floor(latest * frameCount)
         );
+
         requestAnimationFrame(() => renderFrame(frameIndex));
     });
 
-    // Handle resize
     useEffect(() => {
         const handleResize = () => {
             if (canvasRef.current) {
                 canvasRef.current.width = window.innerWidth;
                 canvasRef.current.height = window.innerHeight;
             }
-        }
-        window.addEventListener('resize', handleResize);
+        };
+
+        window.addEventListener("resize", handleResize);
         handleResize();
-        return () => window.removeEventListener('resize', handleResize);
+
+        return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-    // Initial render when loaded
     useEffect(() => {
         if (isLoaded) {
             renderFrame(0);
@@ -114,10 +123,12 @@ export default function ScrollyCanvas({ frameCount = 75 }: { frameCount?: number
                         Loading...
                     </div>
                 )}
+
                 <canvas
                     ref={canvasRef}
                     className="block w-full h-full object-cover"
                 />
+
                 <Overlay scrollYProgress={scrollYProgress} />
             </div>
         </div>
