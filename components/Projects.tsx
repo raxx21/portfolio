@@ -5,32 +5,46 @@ import Image from "next/image";
 
 const projects = [
     {
-        title: "Solid Starters",
-        category: "Low-Code Platform",
-        description: "A proprietary low-code platform enabling creation of CMS-driven websites through GUI-based model and field creation.",
-        tech: "Next.js, Nest.js, MongoDB",
-        image: "/projects/solid-starters.png"
+        title: "Customer Churn Prediction",
+        category: "Machine Learning",
+        description: "Architected customer financial behavior models using Python, PySpark, and GCP Vertex AI to predict user churn and optimize retention strategies, improving customer retention by 18%.",
+        tech: "Python, PySpark, GCP Vertex AI",
+        image: "/projects/ml.png"
     },
     {
-        title: "Radix E-Commerce",
-        category: "Dynamic Platform",
-        description: "Complete e-commerce platform with dynamic CMS-driven product management and custom admin panels.",
-        tech: "React, Node.js, Microservices",
-        image: "/projects/radix.png"
+        title: "ML Pipeline Automation",
+        category: "Data Engineering",
+        description: "Engineered scalable ML pipelines using Airflow, GCP Cloud Storage, and Snowflake to automate data ingestion and feature engineering, reducing model deployment time by 35%.",
+        tech: "Airflow, GCP, Snowflake",
+        image: "/projects/data.png"
     },
     {
-        title: "Bond Cancellation",
-        category: "Automation System",
-        description: "Business automation for import-export workflows, featuring multi-step processes and financial logic.",
-        tech: "React, Subscription Engine",
-        image: "/projects/bond-cancellation.png"
+        title: "GenAI Financial Assistant",
+        category: "Generative AI",
+        description: "Developed GenAI-powered financial insights assistant using OpenAI APIs and LangChain to generate personalized tax-saving recommendations, enhancing user engagement by 22%.",
+        tech: "OpenAI, LangChain, LLM",
+        image: "/projects/ai.png"
     },
     {
-        title: "Max Life - Mpro",
-        category: "Insurance Tech",
-        description: "Large-scale operations platform. Led two teams, migrated to microservices, and delivered 10+ major upgrades.",
-        tech: "Node.js, Microservices",
-        image: "/projects/max-life.png"
+        title: "RAG-Based Financial Query System",
+        category: "LLM / RAG",
+        description: "Designed and implemented RAG pipelines using LangChain, vector databases, and OpenAI embeddings to enable context-aware financial query resolution and document retrieval, improving response accuracy by 30%.",
+        tech: "RAG, Embeddings, Vector DB",
+        image: "/projects/rag.png"
+    },
+    {
+        title: "Real-Time Fraud Detection",
+        category: "Streaming ML",
+        description: "Implemented real-time fraud detection models using XGBoost and Kafka streaming to identify anomalous transactions, reducing fraud losses by 25%.",
+        tech: "XGBoost, Kafka, Streaming",
+        image: "/projects/fraud.png"
+    },
+    {
+        title: "LLM Document Processing",
+        category: "AI Automation",
+        description: "Designed LLM-based document processing pipelines using Transformers and OCR to extract insights from financial documents, reducing manual effort by 40%.",
+        tech: "Transformers, OCR, LLM",
+        image: "/projects/ocr.png"
     },
 ];
 
@@ -77,8 +91,12 @@ export default function Projects() {
                                         {project.tech}
                                     </span>
                                 </div>
-                                <h3 className="text-4xl font-bold text-white mb-3 drop-shadow-md">{project.title}</h3>
-                                <p className="text-gray-200 text-lg leading-relaxed drop-shadow-md">{project.description}</p>
+                                <h3 className="text-4xl font-bold text-white mb-3 drop-shadow-md">
+                                    {project.title}
+                                </h3>
+                                <p className="text-gray-200 text-lg leading-relaxed drop-shadow-md">
+                                    {project.description}
+                                </p>
                             </div>
                         </motion.div>
                     ))}
