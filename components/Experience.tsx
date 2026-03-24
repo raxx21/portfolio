@@ -4,29 +4,26 @@ import { motion } from "framer-motion";
 
 const experiences = [
     {
-        company: "Logic Loop",
-        role: "Full Stack Developer",
-        period: "Sep 2024 – Present",
-        description: "Built proprietary low-code platforms and e-commerce solutions. Extended Solid platform with automation modules for Bond Cancellation.",
+        company: "Intuit",
+        role: "Data Scientist",
+        period: "May 2025 – Present",
+        description:
+            "Architected customer financial behavior models using Python, PySpark, and GCP Vertex AI to predict user churn and optimize retention strategies, improving customer retention by 18%. Developed GenAI-powered financial insights assistant using OpenAI APIs and LangChain, enhancing user engagement by 22%. Implemented real-time fraud detection models using XGBoost and Kafka streaming, reducing fraud losses by 25%."
     },
     {
-        company: "Neosoft",
-        role: "Full Stack Developer",
-        period: "June 2024 – Aug 2024",
-        description: "Developed Resume Builder using micro-frontend architecture. Integrated independent React micro-apps with Node.js backend.",
+        company: "Tata Consultancy Services",
+        role: "Data Scientist",
+        period: "Aug 2021 – Aug 2023",
+        description:
+            "Designed predictive models using Scikit-learn and Python to forecast customer demand and optimize inventory planning, improving forecast accuracy by 20%. Built end-to-end ETL pipelines using Apache Spark, Hive, and SQL, reducing data latency by 30%. Deployed machine learning models using Docker, Kubernetes, and Azure ML for scalable and reliable inference."
     },
     {
-        company: "Monocept (Max Life Insurance)",
-        role: "Senior Full Stack Developer",
-        period: "Oct 2021 – May 2024",
-        description: "Led development of Mpro insurance platform. Migrated modules to microservices and delivered critical operational features.",
-    },
-    {
-        company: "Ikshan",
-        role: "Full Stack Developer",
-        period: "Sep 2020 – Aug 2021",
-        description: "Built multiple client applications from scratch including Jibra and Green Aggregation. Designed UI and integrated full-stack authentication.",
-    },
+        company: "Zoho",
+        role: "Data Analyst",
+        period: "Jun 2019 – Jul 2021",
+        description:
+            "Analyzed user behavior data using SQL and Excel to generate actionable insights, increasing feature adoption by 15%. Developed interactive dashboards using Tableau and Zoho Analytics, improving reporting efficiency by 25%. Automated reporting workflows, reducing manual effort by 40%."
+    }
 ];
 
 export default function Experience() {
@@ -54,9 +51,15 @@ export default function Experience() {
                         >
                             <div className="absolute -left-[5px] top-2 w-2.5 h-2.5 bg-white rounded-full shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
 
-                            <div className="text-sm text-gray-500 font-mono mb-2 uppercase tracking-widest">{exp.period}</div>
-                            <h3 className="text-3xl font-bold text-white mb-1">{exp.company}</h3>
-                            <h4 className="text-xl text-gray-400 mb-4">{exp.role}</h4>
+                            <div className="text-sm text-gray-500 font-mono mb-2 uppercase tracking-widest">
+                                {exp.period}
+                            </div>
+                            <h3 className="text-3xl font-bold text-white mb-1">
+                                {exp.company}
+                            </h3>
+                            <h4 className="text-xl text-gray-400 mb-4">
+                                {exp.role}
+                            </h4>
                             <p className="text-gray-300 leading-relaxed max-w-2xl">
                                 {exp.description}
                             </p>
